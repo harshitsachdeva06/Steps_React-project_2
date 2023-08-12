@@ -1,0 +1,57 @@
+import "./styles.css";
+import { useState } from "react";
+export default function App() {
+  return (
+    <div className="App">
+      <Counter />
+    </div>
+  );
+}
+function Counter() {
+  const [step, setStep] = useState(1);
+  const [count, setCount] = useState(0);
+  // const steps = 1;
+  // const counts =0;
+
+  const date = new Date("June 21 2027");
+  date.setDate(date.getDate() + step);
+
+  function stepNeg() {
+    setStep(step - count);
+    // setStep((step)=> step -  count);
+  }
+  function stepPos() {
+    setStep(step + count);
+  }
+  function countNeg() {
+    setCount(count - 1);
+  }
+  function countPos() {
+    setCount(count + 1);
+  }
+  return (
+    <div>
+      <div>
+        <button onClick={stepNeg}>-</button>
+        <span>Step:{step}</span>
+        <button onClick={stepPos}>+</button>
+      </div>
+
+      <div>
+        <button onClick={countNeg}>-</button>
+        <span>Count:{count}</span>
+        <button onClick={countPos}>+</button>
+      </div>
+      <p>
+        <span>
+          {count === 0
+            ? "Today is "
+            : count > 0
+            ? `${count} days from is `
+            : `${Math.abs(count)} days ago was `}
+        </span>
+        <span>{date.toDateString()}</span>
+      </p>
+    </div>
+  );
+}
